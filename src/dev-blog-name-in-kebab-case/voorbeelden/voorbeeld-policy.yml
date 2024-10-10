@@ -1,0 +1,8 @@
+policies:
+  - name: stop-unused-instances
+    resource: ec2
+    filters:
+      - State.Name: running
+      - "tag:Environment": absent
+    actions:
+      - type: stop
