@@ -1,0 +1,85 @@
+{
+  "policy": {
+    "name": "stop-test-instances",
+    "resource": "k8s.pod",
+    "filters": [
+      {
+        "type": "value",
+        "key": "metadata.namespace",
+        "op": "eq",
+        "value": "c7n"
+      },
+      {
+        "type": "value",
+        "key": "metadata.labels.env",
+        "op": "eq",
+        "value": "test"
+      }
+    ],
+    "actions": [
+      {
+        "type": "delete"
+      }
+    ]
+  },
+  "version": "0.9.41",
+  "execution": {
+    "id": "f0b1491c-8f98-428e-9b1e-c8cc076c5216",
+    "start": 1736970383.5427287,
+    "end_time": 1736970383.5703936,
+    "duration": 0.027664899826049805
+  },
+  "config": {
+    "region": "",
+    "regions": [],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": null,
+    "assume_role": null,
+    "session_policy": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": false,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": null,
+    "configs": [
+      "./Policies/"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {},
+  "metrics": [
+    {
+      "MetricName": "ResourceCount",
+      "Timestamp": "2025-01-15T20:46:23.547290",
+      "Value": 1,
+      "Unit": "Count"
+    },
+    {
+      "MetricName": "ResourceTime",
+      "Timestamp": "2025-01-15T20:46:23.547290",
+      "Value": 0.0023849010467529297,
+      "Unit": "Seconds"
+    },
+    {
+      "MetricName": "PolicyException",
+      "Timestamp": "2025-01-15T20:46:23.569430",
+      "Value": 1,
+      "Unit": "Count"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+2025-01-14 23:15:07,967 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.14
+2025-01-14 23:16:28,584 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.01
+2025-01-14 23:16:42,601 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-14 23:16:51,627 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-14 23:17:22,912 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-14 23:18:05,750 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-14 23:18:17,562 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-14 23:20:52,577 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-14 23:21:02,254 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-14 23:22:05,996 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-14 23:23:19,298 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-15 19:02:13,747 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.16
+2025-01-15 20:20:27,472 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.12
+2025-01-15 20:29:26,475 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.01
+2025-01-15 20:30:14,944 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-15 20:31:04,096 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-15 20:31:26,738 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-15 20:31:41,489 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-15 20:33:07,559 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-15 20:33:48,218 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:2 time:0.00
+2025-01-15 20:34:08,681 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:0 time:0.00
+2025-01-15 20:42:31,578 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.11
+2025-01-15 20:44:09,232 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.00
+2025-01-15 20:44:09,280 - custodian.policy - INFO - policy:stop-test-instances action:deleteresource resources:1 execution_time:0.05
+2025-01-15 20:45:26,152 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.00
+2025-01-15 20:45:26,180 - custodian.output - ERROR - Error while executing policy
+Traceback (most recent call last):
+  File "C:\Python312\Lib\site-packages\c7n\policy.py", line 364, in run
+    results = a.process(resources)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 43, in process
+    self.process_resource_set(client, resource_set)
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 159, in process_resource_set
+    self.delete_resources(client, resources, **delete_args)
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 132, in delete_resources
+    op(**delete_args)
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api\core_v1_api.py", line 12550, in delete_namespaced_pod
+    return self.delete_namespaced_pod_with_http_info(name, namespace, **kwargs)  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api\core_v1_api.py", line 12657, in delete_namespaced_pod_with_http_info
+    return self.api_client.call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 348, in call_api
+    return self.__call_api(resource_path, method,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 180, in __call_api
+    response_data = self.request(
+                    ^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 415, in request
+    return self.rest_client.DELETE(url,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\rest.py", line 270, in DELETE
+    return self.request("DELETE", url,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\rest.py", line 238, in request
+    raise ApiException(http_resp=r)
+kubernetes.client.exceptions.ApiException: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Audit-Id': 'f38df64d-2710-4c5a-9dbf-c23abf3c2c12', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-Kubernetes-Pf-Flowschema-Uid': 'b073dbc8-3694-4f0e-9221-bec5a0c5f617', 'X-Kubernetes-Pf-Prioritylevel-Uid': '3fcf9688-4b93-45e5-ad31-6d39483b307c', 'Date': 'Wed, 15 Jan 2025 19:45:25 GMT', 'Content-Length': '226'})
+HTTP response body: {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"pods \"mail-service-6db45dfc8f-z4fzg\" not found","reason":"NotFound","details":{"name":"mail-service-6db45dfc8f-z4fzg","kind":"pods"},"code":404}
+
+
+2025-01-15 20:45:48,859 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.00
+2025-01-15 20:45:54,268 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.00
+2025-01-15 20:45:54,292 - custodian.output - ERROR - Error while executing policy
+Traceback (most recent call last):
+  File "C:\Python312\Lib\site-packages\c7n\policy.py", line 364, in run
+    results = a.process(resources)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 43, in process
+    self.process_resource_set(client, resource_set)
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 159, in process_resource_set
+    self.delete_resources(client, resources, **delete_args)
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 132, in delete_resources
+    op(**delete_args)
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api\core_v1_api.py", line 12550, in delete_namespaced_pod
+    return self.delete_namespaced_pod_with_http_info(name, namespace, **kwargs)  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api\core_v1_api.py", line 12657, in delete_namespaced_pod_with_http_info
+    return self.api_client.call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 348, in call_api
+    return self.__call_api(resource_path, method,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 180, in __call_api
+    response_data = self.request(
+                    ^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 415, in request
+    return self.rest_client.DELETE(url,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\rest.py", line 270, in DELETE
+    return self.request("DELETE", url,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\rest.py", line 238, in request
+    raise ApiException(http_resp=r)
+kubernetes.client.exceptions.ApiException: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Audit-Id': '14f7a9de-ead6-4c40-bcb3-8de0b376d701', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-Kubernetes-Pf-Flowschema-Uid': 'b073dbc8-3694-4f0e-9221-bec5a0c5f617', 'X-Kubernetes-Pf-Prioritylevel-Uid': '3fcf9688-4b93-45e5-ad31-6d39483b307c', 'Date': 'Wed, 15 Jan 2025 19:45:54 GMT', 'Content-Length': '226'})
+HTTP response body: {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"pods \"mail-service-6db45dfc8f-z4fzg\" not found","reason":"NotFound","details":{"name":"mail-service-6db45dfc8f-z4fzg","kind":"pods"},"code":404}
+
+
+2025-01-15 20:46:17,987 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.00
+2025-01-15 20:46:23,546 - custodian.policy - INFO - policy:stop-test-instances resource:k8s.pod region: count:1 time:0.00
+2025-01-15 20:46:23,570 - custodian.output - ERROR - Error while executing policy
+Traceback (most recent call last):
+  File "C:\Python312\Lib\site-packages\c7n\policy.py", line 364, in run
+    results = a.process(resources)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 43, in process
+    self.process_resource_set(client, resource_set)
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 159, in process_resource_set
+    self.delete_resources(client, resources, **delete_args)
+  File "C:\Python312\Lib\site-packages\c7n_kube\actions\core.py", line 132, in delete_resources
+    op(**delete_args)
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api\core_v1_api.py", line 12550, in delete_namespaced_pod
+    return self.delete_namespaced_pod_with_http_info(name, namespace, **kwargs)  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api\core_v1_api.py", line 12657, in delete_namespaced_pod_with_http_info
+    return self.api_client.call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 348, in call_api
+    return self.__call_api(resource_path, method,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 180, in __call_api
+    response_data = self.request(
+                    ^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\api_client.py", line 415, in request
+    return self.rest_client.DELETE(url,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\rest.py", line 270, in DELETE
+    return self.request("DELETE", url,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\kubernetes\client\rest.py", line 238, in request
+    raise ApiException(http_resp=r)
+kubernetes.client.exceptions.ApiException: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Audit-Id': '27a39023-dce1-402b-8d17-51828ed66e74', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-Kubernetes-Pf-Flowschema-Uid': 'b073dbc8-3694-4f0e-9221-bec5a0c5f617', 'X-Kubernetes-Pf-Prioritylevel-Uid': '3fcf9688-4b93-45e5-ad31-6d39483b307c', 'Date': 'Wed, 15 Jan 2025 19:46:23 GMT', 'Content-Length': '226'})
+HTTP response body: {"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"pods \"mail-service-6db45dfc8f-z4fzg\" not found","reason":"NotFound","details":{"name":"mail-service-6db45dfc8f-z4fzg","kind":"pods"},"code":404}
+
+

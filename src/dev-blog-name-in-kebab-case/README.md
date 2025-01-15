@@ -97,5 +97,82 @@ Samengevat biedt Cloud Custodian veel voordelen voor automatisering, multi-cloud
 </table>
 <i>Tabel 1. Alternatieven volgens [ChatGPT](.) </i>
 
-\
+</br>
+
 # Implementatie in een simpele applicatie
+Voor deze implementatie ga ik een hele simpele microservice applicatie opzetten in minikube. Het maakt hierin niet uit wat de pods doen, zolang ze maar draaien. Ik ga hiervoor gebruik maken van dit [project](../../C7N/). Ik heb nu 2 pods draaien in de namespace "c7n". Dit kun je zien met het commando:
+
+```ps1
+kubectl get pods -n c7n
+```
+<i>Code snippet 1. Controleer draaiende pods.</i>
+
+<img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
+</br>
+<i>Afbeelding 1. De op dit moment draaiende pods.</i>
+
+Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar deze [website](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
+```ps1
+
+python3 -m venv custodian
+.\custodian\Scripts\Activate.ps1
+pip install c7n
+```
+<i>Code snippet 2.  Installeer commando Cloud Custodian voor windows</i>
+
+Mocht het geinstalleerd moeten worden voor een ander besturingssysteem, is het handig om even naar de docs te kijken op de [Cloud Custodian](https://cloudcustodian.io/docs/quickstart/index.html#install-cc) website. Ter controle van de installatie kan dit commando uitgevoerd worden:
+
+```ps1
+custodian version
+```
+<i>Code snippet 3. Controleer installatie</i>
+
+Dit zou een versienummer moeten tonen als de installatie is geslaagd. Nu alles is opgezet kan een eerste policy worden gemaakt. Omdat er meerdere policies gedefinieerd kunnen worden, zet ik deze in een aparte folder genaamd "Policies". Ik ga een policy maken die controlleert of een pod het label "test" bevat, als dit het geval is wordt de pod gestopt. Deze policy ziet er zo uit:
+
+```yaml
+policies:
+  - name: stop-test-instances
+    resource: k8s.pod
+    filters:
+      - type: value
+        key: metadata.namespace
+        op: eq
+        value: c7n
+      - type: value
+        key: metadata.labels.env
+        op: eq
+        value: "test"
+    actions:
+      - type: delete
+```
+<i>Code snippet 4. Voorbeeld policy.yaml</i>
+
+In deze policy is gespecifieerd wat de naam van de policy is en om waat voor een resource het gaat, in dit geval een kubernetes pod. Wat Cloud Custodian krachtig maakt, zijn de filters. Zo kan er op bijna alle beschikbare informatie over een pod gefilterd worden, denk hierbij aan: regio, status, cpu gebruik, etc. In dit geval filter ik op namespace c7n. Hierin staat "eq" voor equal. Vervolgens wordt er gefilterd op label env=test. Aangezien er nog geen pods gelabeled zijn, wordt er hier geen resultaat verwacht. De policy kan uitgevoerd worden met het commando:
+
+```ps1
+custodian run --dryrun -s . ./Policies/
+```
+<i>Code snippet 5. Uitvoeren van policy.</i>
+
+Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgevoerd en ik kan zien wat het resultaat is van de policy. Het resultaat van de policy nu is:
+
+<img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
+</br>
+<i>Afbeelding 2. Resultaat van de policy. </i>
+
+Nu ga ik een [pod labelen](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_label/) met env=test. Als nu de policy opnieuw wordt uitgevoerd zal de count op 1 staan. Ik ga de policy nu uitvoeren zonder de flag "--dryrun". De pod zal nu gestopt worden.
+
+```ps1
+custodian run -s . ./Policies/
+```
+<i>Code snippet 6. Uitvoeren van policy.
+</br>
+
+Het resultaat hiervan is dit:
+<img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
+</br>
+<i>Afbeelding 3. Resultaat policy zonder dryrun flag.
+
+Als er nu gekeken wordt naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet gedelete door de replicaset die ervoor zorgt dat er altijd een draait.
+
+<img src="./plaatjes/c7n-result-policy-without-label.png" alt="opnieuw opgestartte pod" />

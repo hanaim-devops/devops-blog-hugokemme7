@@ -1,0 +1,14 @@
+services:
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: ./.dockerfile
+    image: c7n/api:1.0
+  
+  mail-service:
+    container_name: mail-service
+    build:
+      context: ./mailService
+      dockerfile: ./.dockerfile
+    image: c7n/mail-service:1.0

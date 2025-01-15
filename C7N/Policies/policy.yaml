@@ -1,0 +1,14 @@
+policies:
+  - name: stop-test-instances
+    resource: k8s.pod
+    filters:
+      - type: value
+        key: metadata.namespace
+        op: eq
+        value: c7n
+      - type: value
+        key: metadata.labels.env
+        op: eq
+        value: "test"
+    actions:
+      - type: delete
