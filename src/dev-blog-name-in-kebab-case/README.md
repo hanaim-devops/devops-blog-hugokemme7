@@ -160,6 +160,19 @@ Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgev
 </br>
 <i>Afbeelding 2. Resultaat van de policy. </i>
 
+Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, zoals deze:
+<img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
+<i>Afbeelding 2. Voorbeeld van foutmelding na uitvoeren van policy.</i>
+</br>
+
+Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code.
+
+<img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
+</br>
+<i>Afbeelding 3. Verander de file encoding naar "UTF-8". </i>
+
+</br>
+
 Nu ga ik een [pod labelen](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_label/) met env=test. Als nu de policy opnieuw wordt uitgevoerd zal de count op 1 staan. Ik ga de policy nu uitvoeren zonder de flag "--dryrun". De pod zal nu gestopt worden.
 
 ```ps1
@@ -175,4 +188,5 @@ Het resultaat hiervan is dit:
 
 Als er nu gekeken wordt naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet gedelete door de replicaset die ervoor zorgt dat er altijd een draait.
 
-<img src="./plaatjes/c7n-result-policy-without-label.png" alt="opnieuw opgestartte pod" />
+<img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
+<i>Afbeelding 4. Opnieuw opgestartte pod. </i>
