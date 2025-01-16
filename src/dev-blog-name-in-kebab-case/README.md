@@ -112,8 +112,6 @@ kubectl get pods -n c7n
 </br>
 <i>Afbeelding 2. De op dit moment draaiende pods.</i>
 
-</br>
-
 Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar de website van [Python](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
 ```ps1
 
