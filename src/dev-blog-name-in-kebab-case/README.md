@@ -39,6 +39,8 @@ Cloud Custodian werkt op basis van policies. Deze polices bestaan uit simpele fi
 
 ### Voorbeeld
 <img src="plaatjes/voorbeeld-policy.png" width="300" align="center" alt="Voorbeeld policy" title="Voorbeeld policy"/>
+
+
 <i>Afbeelding 1. Voorbeeld policy</i>
 
 Deze policy stopt alle EC2-instances die draaien en geen "Environment" tag hebben.
@@ -107,7 +109,10 @@ kubectl get pods -n c7n
 </br>
 
 <img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
+</br>
 <i>Afbeelding 2. De op dit moment draaiende pods.</i>
+
+</br>
 
 Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar de website van [Python](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
 ```ps1
@@ -155,16 +160,23 @@ custodian run --dryrun -s . ./Policies/
 Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgevoerd en ik kan zien wat het resultaat is van de policy. Het resultaat van de policy is nu:
 
 <img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
+</br>
 <i>Afbeelding 3. Resultaat van de policy met "dryrun" flag. </i>
+
+</br>
 
 Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, zoals deze:
 <img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
 <i>Afbeelding 4. Voorbeeld van foutmelding na uitvoeren van policy.</i>
+</br>
 
 Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met `CTRL + SHIFT + P`. Hier kan je zoeken naar `Change file encoding`, daarna krijg je dit menu:
 
 <img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
+</br>
 <i>Afbeelding 5. Verander de file encoding naar "UTF-8". </i>
+
+</br>
 
 Nu ga ik een [pod labelen](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_label/) met env=test. Als ik nu de policy opnieuw ga uitvoeren zal de count op 1 staan. Ik ga de policy nu uitvoeren zonder de flag "--dryrun". De pod zal nu gestopt worden.
 
@@ -176,12 +188,15 @@ custodian run -s . ./Policies/
 
 Het resultaat hiervan is dit:
 <img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
+</br>
 <i>Afbeelding 6. Resultaat policy zonder dryrun flag. </i>
 
 Als ik nu kijk naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet verwijder door de replicaset die ervoor zorgt dat er altijd een draait.
 
 <img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
 <i>Afbeelding 7. Opnieuw opgestartte pod. </i>
+
+</br>
 
 # Conclusie
 Met behulp van Cloud Custodian kan ervoor gezord worden dat cloud resources zich aan bepaalde regels moeten houden. Zo kan het voorkomen worden dat er pods blijven rond zweven, zonder dat je daar vanaf weet. Cloud Custodian kan ook ingezet worden om webhooks te gebruiken en messages te sturen via slack. Ik wil dit tijdens het project inzetten op alle pods die niet de status "running" hebben. Zo kan ik direct zien wanneer een pod het niet doet.
