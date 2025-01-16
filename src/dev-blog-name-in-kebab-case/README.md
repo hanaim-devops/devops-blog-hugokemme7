@@ -30,7 +30,7 @@ Cloud Custodian maakt gebruik van het principe "policy as code". Dit betekent da
 
 Cloud Custodian werkt met een event-driven-architecture (EDA), dit betekent dat het kan worden getriggerd door gebeurtenissen in de cloud, en direct actie kan ondernemen op basis van de ingestelde regels. op deze manier kunnen bepaalde veiligheidsnormen worden gehandhaafd en kosten worden geoptimaliseerd.
 
-## Hoe werkt Cloud Custodian?
+# Hoe werkt Cloud Custodian?
 Cloud Custodian werkt op basis van policies. Deze polices bestaan uit simpele filters en acties die in YAML-bestanden worden gedefinieerd. Een policy wordt altijd op dezelfde manier opgebouwd;
 
 - <b>Resource:</b> Bepaalde cloudresources worden geselecteerd, zoals EC2-instances, S3-buckets, of databases.
@@ -170,7 +170,7 @@ Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, z
 <i>Afbeelding 3. Voorbeeld van foutmelding na uitvoeren van policy.</i>
 </br>
 
-Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met "CTRL + SHIFT + P". Hier kan je zoeken naar "Change file encoding", daarna krijg je dit menu:
+Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met `CTRL + SHIFT + P`. Hier kan je zoeken naar `Change file encoding`, daarna krijg je dit menu:
 
 <img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
 </br>
