@@ -110,7 +110,7 @@ kubectl get pods -n c7n
 
 <img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
 </br>
-<i>Afbeelding 1. De op dit moment draaiende pods.</i>
+<i>Afbeelding 2. De op dit moment draaiende pods.</i>
 
 </br>
 
@@ -161,20 +161,20 @@ Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgev
 
 <img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
 </br>
-<i>Afbeelding 2. Resultaat van de policy met "dryrun" flag. </i>
+<i>Afbeelding 3. Resultaat van de policy met "dryrun" flag. </i>
 
 </br>
 
 Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, zoals deze:
 <img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
-<i>Afbeelding 3. Voorbeeld van foutmelding na uitvoeren van policy.</i>
+<i>Afbeelding 4. Voorbeeld van foutmelding na uitvoeren van policy.</i>
 </br>
 
 Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met `CTRL + SHIFT + P`. Hier kan je zoeken naar `Change file encoding`, daarna krijg je dit menu:
 
 <img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
 </br>
-<i>Afbeelding 4. Verander de file encoding naar "UTF-8". </i>
+<i>Afbeelding 5. Verander de file encoding naar "UTF-8". </i>
 
 </br>
 
@@ -189,12 +189,12 @@ custodian run -s . ./Policies/
 Het resultaat hiervan is dit:
 <img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
 </br>
-<i>Afbeelding 3. Resultaat policy zonder dryrun flag. </i>
+<i>Afbeelding 6. Resultaat policy zonder dryrun flag. </i>
 
 Als ik nu kijk naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet verwijder door de replicaset die ervoor zorgt dat er altijd een draait.
 
 <img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
-<i>Afbeelding 5. Opnieuw opgestartte pod. </i>
+<i>Afbeelding 7. Opnieuw opgestartte pod. </i>
 
 </br>
 
