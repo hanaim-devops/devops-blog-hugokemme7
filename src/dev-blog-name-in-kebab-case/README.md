@@ -1,13 +1,13 @@
-# Cloud custodian
+# Bewaak de kwaliteit van je cluster
 
 <img src="plaatjes/cloudCustodianLogo.png" width="250" align="right" alt="Cloud custodian logo" title="Cloud custodian">
 
-*[Hugo Kemme, oktober 2024.](https://github.com/hanaim-devops/blog-student-naam)*
+*[Hugo Kemme, januari 2025.](https://github.com/hanaim-devops/blog-student-naam)*
 <hr/>
 
 In deze blogpost ga ik het hebben over mijn onderzoek naar Cloud custodian. Ik heb deze open source tool gekozen, omdat ik automatisering heel gaaf vindt. Hoe mooi is het als je een speciefieke set regels kan definieren en het programma de rest doet.
 
-Ik moet deze tool tijdens het project ook gaan implementeren samen met de onderzochte tools van mijn groepsgenoten. Cloud custodian werkt goed samen met publieke cloudproviders, zoals; AWS, Azure & GCP. Maar ook met Kubernetes en docker. Door deze brede samenwerkingmogelijkheden leek dit mij een geschikte tool.
+Ik moet deze tool tijdens het project ook gaan implementeren samen met de onderzochte tools van mijn groepsgenoten. Cloud custodian werkt goed samen met publieke cloudproviders, zoals; AWS, Azure & GCP. Maar ook met Kubernetes en docker. Door deze brede samenwerkingmogelijkheden lijkt dit mij een geschikte tool.
 <hr/>
 
 Ik heb voor dit onderzoek de volgende hoofdvraag opgestelt:
@@ -21,7 +21,7 @@ Om deze hoofdvraag te beantwoorden heb ik de volgende deelvragen opgestelt:
 5. Hoe kan ik Cloud custodian implementeren op een simpele applicatie?
 6. Hoe kan ik Cloud custodian gebruiken tijdens mijn project?
 
-Om deze deelvragen te kunnen beantwoorden heb ik gekozen voor verschillende onderzoeksmethode van de [ict researchmethods](.). Deze zal ik toelichten tijdens het behandelen van de deelvragen.
+Om deze deelvragen te kunnen beantwoorden heb ik gekozen voor verschillende onderzoeksmethode van de ICT onderzoeksmethoden (Hbo-I, n.d.). Deze zal ik toelichten tijdens het behandelen van de deelvragen.
 
 # Wat is Cloud custodian?
 Cloud Custodian is een open-source tool die helpt bij het beheren en automatiseren van governance in cloudomgevingen. Governance gaat over het vaststellen van regels en richtlijnen voor het gebruik en beheer van IT- en cloudresources, zoals beveiliging, compliance en kostenbeheer. Cloud Custodian biedt een eenvoudige manier om deze regels te definiëren en af te dwingen in publieke clouds, zoals AWS, Azure, en Google Cloud Platform (GCP), maar het kan ook worden geïntegreerd met Kubernetes en Docker.
@@ -41,12 +41,9 @@ Cloud Custodian werkt op basis van policies. Deze polices bestaan uit simpele fi
 <img src="plaatjes/voorbeeld-policy.png" width="300" align="center" alt="Voorbeeld policy" title="Voorbeeld policy"/>
 
 
-<i>[Afbeelding 1.](plaatjes/voorbeeld-policy.png) Voorbeeld policy</i>
+<i>Afbeelding 1. Voorbeeld policy</i>
 
-Deze policy stopt alle EC2-instances die draaien, maar geen "Environment" tag hebben.
-
-Cloud Custodian maakt het eenvoudig om governance te automatiseren en zorgt ervoor dat je cloudomgeving efficiënt, veilig en kosteneffectief blijft, zonder handmatig beheer.
-
+Deze policy stopt alle EC2-instances die draaien en geen "Environment" tag hebben.
 
 # Cloud governance
 Cloud governance is belangrijk omdat het helpt bij het beheren van de veiligheid, compliance, en kosten in cloudomgevingen. Het zorgt ervoor dat cloudresources efficiënt worden gebruikt, voldoen aan regelgeving, en beschermd zijn tegen beveiligingsrisico's.
@@ -65,8 +62,10 @@ Cloud Custodian speelt hierin een rol door governance te automatiseren. Het stel
 - Gebruikers moeten het merendeel van hun werk via de command-line of API uitvoeren.
 - Onderhoud en updates kunnen achterlopen tot stilvallen, omdat het een open source tool is.
 
-\
+</br>
 Samengevat biedt Cloud Custodian veel voordelen voor automatisering, multi-cloudbeheer, en kostenoptimalisatie, maar vereist het enige technische kennis en onderhoud.
+
+</br>
 
 # Alternatieven
 <table> 
@@ -95,23 +94,27 @@ Samengevat biedt Cloud Custodian veel voordelen voor automatisering, multi-cloud
         <td>Vergeleken met Cloud Custodian meer complex om op te zetten en configureren, vereist kennis van de Rego policy-taal.</td>
     </tr>
 </table>
-<i>Tabel 1. Alternatieven volgens [ChatGPT](.) </i>
+<i>Tabel 1. Alternatieven volgens ChatGPT. (ChatGPT - Alternatieven Voor Cloud Custodian, n.d.)</i>
 
 </br>
 
 # Implementatie in een simpele applicatie
-Voor deze implementatie ga ik een hele simpele microservice applicatie opzetten in minikube. Het maakt hierin niet uit wat de pods doen, zolang ze maar draaien. Ik ga hiervoor gebruik maken van dit [project](../../C7N/). Ik heb nu 2 pods draaien in de namespace "c7n". Dit kun je zien met het commando:
+Voor deze implementatie ga ik een simpele microservice applicatie opzetten in minikube. Het maakt hierin niet uit wat de pods doen, zolang ze maar draaien. Ik ga hiervoor gebruik maken van dit [project](../../C7N/). Ik heb nu 2 pods draaien in de namespace "c7n". Dit kun je zien met het commando:
 
 ```ps1
 kubectl get pods -n c7n
 ```
 <i>Code snippet 1. Controleer draaiende pods.</i>
 
+</br>
+
 <img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
 </br>
 <i>Afbeelding 1. De op dit moment draaiende pods.</i>
 
-Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar deze [website](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
+</br>
+
+Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar de website van [Python](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
 ```ps1
 
 python3 -m venv custodian
@@ -147,46 +150,64 @@ policies:
 ```
 <i>Code snippet 4. Voorbeeld policy.yaml</i>
 
-In deze policy is gespecifieerd wat de naam van de policy is en om waat voor een resource het gaat, in dit geval een kubernetes pod. Wat Cloud Custodian krachtig maakt, zijn de filters. Zo kan er op bijna alle beschikbare informatie over een pod gefilterd worden, denk hierbij aan: regio, status, cpu gebruik, etc. In dit geval filter ik op namespace c7n. Hierin staat "eq" voor equal. Vervolgens wordt er gefilterd op label env=test. Aangezien er nog geen pods gelabeled zijn, wordt er hier geen resultaat verwacht. De policy kan uitgevoerd worden met het commando:
+In deze policy is gespecifieerd wat de naam van de policy is en om wat voor een resource het gaat, in dit geval een kubernetes pod. Wat Cloud Custodian krachtig maakt, zijn de filters. Zo kan er op bijna alle beschikbare informatie over een pod gefilterd worden, denk hierbij aan: regio, status, cpu gebruik, etc (Generic Filters — Cloud Custodian  Documentation, n.d.). In dit geval filter ik op namespace c7n. Hierin staat "eq" voor equal. Vervolgens wordt er gefilterd op label env=test. Aangezien er nog geen pods gelabeled zijn, wordt er hier geen resultaat verwacht. De policy kan uitgevoerd worden met het commando:
 
 ```ps1
 custodian run --dryrun -s . ./Policies/
 ```
 <i>Code snippet 5. Uitvoeren van policy.</i>
 
-Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgevoerd en ik kan zien wat het resultaat is van de policy. Het resultaat van de policy nu is:
+Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgevoerd en ik kan zien wat het resultaat is van de policy. Het resultaat van de policy is nu:
 
 <img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
 </br>
-<i>Afbeelding 2. Resultaat van de policy. </i>
+<i>Afbeelding 2. Resultaat van de policy met "dryrun" flag. </i>
+
+</br>
 
 Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, zoals deze:
 <img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
-<i>Afbeelding 2. Voorbeeld van foutmelding na uitvoeren van policy.</i>
+<i>Afbeelding 3. Voorbeeld van foutmelding na uitvoeren van policy.</i>
 </br>
 
-Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code.
+Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met "CTRL + SHIFT + P". Hier kan je zoeken naar "Change file encoding", daarna krijg je dit menu:
 
 <img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
 </br>
-<i>Afbeelding 3. Verander de file encoding naar "UTF-8". </i>
+<i>Afbeelding 4. Verander de file encoding naar "UTF-8". </i>
 
 </br>
 
-Nu ga ik een [pod labelen](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_label/) met env=test. Als nu de policy opnieuw wordt uitgevoerd zal de count op 1 staan. Ik ga de policy nu uitvoeren zonder de flag "--dryrun". De pod zal nu gestopt worden.
+Nu ga ik een [pod labelen](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_label/) met env=test. Als ik nu de policy opnieuw ga uitvoeren zal de count op 1 staan. Ik ga de policy nu uitvoeren zonder de flag "--dryrun". De pod zal nu gestopt worden.
 
 ```ps1
 custodian run -s . ./Policies/
 ```
-<i>Code snippet 6. Uitvoeren van policy.
+<i>Code snippet 6. Uitvoeren van policy. </i>
 </br>
 
 Het resultaat hiervan is dit:
 <img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
 </br>
-<i>Afbeelding 3. Resultaat policy zonder dryrun flag.
+<i>Afbeelding 3. Resultaat policy zonder dryrun flag. </i>
 
-Als er nu gekeken wordt naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet gedelete door de replicaset die ervoor zorgt dat er altijd een draait.
+Als ik nu kijk naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet verwijder door de replicaset die ervoor zorgt dat er altijd een draait.
 
 <img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
-<i>Afbeelding 4. Opnieuw opgestartte pod. </i>
+<i>Afbeelding 5. Opnieuw opgestartte pod. </i>
+
+</br>
+
+# Conclusie
+Met behulp van Cloud Custodian kan ervoor gezord worden dat cloud resources zich aan bepaalde regels moeten houden. Zo kan het voorkomen worden dat er pods blijven rond zweven, zonder dat je daar vanaf weet. Cloud Custodian kan ook ingezet worden om webhooks te gebruiken en messages te sturen via slack. Ik wil dit tijdens het project inzetten op alle pods die niet de status "running" hebben. Zo kan ik direct zien wanneer een pod het niet doet.
+
+
+# Bronnen
+ * Cloud Custodian Documentation — Cloud Custodian  documentation. (n.d.). https://cloudcustodian.io/docs/index.html
+ * Stacklet. (2024, September 23). Cloud Custodian. https://stacklet.io/cloud-custodian/
+ * Mendez, W. (2022, July 25). Cloud Custodian — things I wish I knew at the beginning. Medium. https://medium.com/globant/cloud-custodian-things-i-wish-i-knew-at-the-beginning-2743cf948066
+ * Stacklet. (2024a, February 16). Beyond the basics: discovering powerful, Lesser-Known uses of cloud custodian - [Video]. YouTube. https://www.youtube.com/watch?v=hUKJKkRzNmY
+ * OtherDevOpsGene. (2022b, March 2). What is Cloud Custodian? [Video]. YouTube. https://www.youtube.com/watch?v=bGtQiGQOkHs
+ * Hbo-I. (n.d.). ICT Research Methods — Methods Pack for research in ICT. ICT Research Methods. https://ictresearchmethods.nl/
+ * ChatGPT - Alternatieven voor Cloud Custodian. (n.d.). ChatGPT. https://chatgpt.com/share/67894a72-1374-8001-ad4b-dc39bc44b040
+ * Download Python. (n.d.). Python.org. https://www.python.org/downloads/
