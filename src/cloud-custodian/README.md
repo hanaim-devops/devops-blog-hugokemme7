@@ -1,6 +1,6 @@
 # Bewaak de kwaliteit van je cluster
 
-<figure style="float: right; text-align: center;">
+<figure style="align: right; text-align: center;">
     <img src="plaatjes/cloudCustodianLogo.png" width="250" alt="Cloud custodian logo" title="Cloud custodian">
     <figcaption><i>Afbeelding 1. Cloud Custodian logo.</i></figcaption>
 </figure>
