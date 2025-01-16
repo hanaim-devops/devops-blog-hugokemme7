@@ -1,8 +1,12 @@
 # Bewaak de kwaliteit van je cluster
 
-<img src="plaatjes/cloudCustodianLogo.png" width="250" align="right" alt="Cloud custodian logo" title="Cloud custodian">
+<figure style="float: right; text-align: center;">
+    <img src="plaatjes/cloudCustodianLogo.png" width="250" alt="Cloud custodian logo" title="Cloud custodian">
+    <figcaption><i>Afbeelding 1. Cloud Custodian logo.</i></figcaption>
+</figure>
 
-*[Hugo Kemme, januari 2025.](https://github.com/hanaim-devops/blog-student-naam)*
+
+*[Hugo Kemme, januari 2025.](https://github.com/hanaim-devops/devops-blog-hugokemme7/blob/main/src/cloud-custodian)*
 <hr/>
 
 In deze blogpost ga ik het hebben over mijn onderzoek naar Cloud custodian. Ik heb deze open source tool gekozen, omdat ik automatisering heel gaaf vindt. Hoe mooi is het als je een speciefieke set regels kan definieren en het programma de rest doet.
@@ -40,7 +44,7 @@ Cloud Custodian werkt op basis van policies. Deze polices bestaan uit simpele fi
 ### Voorbeeld
 <figure>
     <img src="plaatjes/voorbeeld-policy.png" width="300" alt="Voorbeeld policy" title="Voorbeeld policy"/>
-    <figcaption><i>Afbeelding 1. Voorbeeld policy</i></figcaption>
+    <figcaption><i>Afbeelding 2. Voorbeeld policy</i></figcaption>
 </figure>
 
 Deze policy stopt alle EC2-instances die draaien en geen "Environment" tag hebben.
@@ -110,7 +114,7 @@ kubectl get pods -n c7n
 
 <figure>
     <img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
-    <figcaption><p>Afbeelding 2. De op dit moment draaiende pods.</p></figcaption>
+    <figcaption><p>Afbeelding 3. De op dit moment draaiende pods.</p></figcaption>
 </figure>
 
 Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar de website van [Python](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
@@ -160,7 +164,7 @@ Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgev
 
 <figure>
     <img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
-    <figcaption><p>Afbeelding 3. Resultaat van de policy met "dryrun" flag.</p></figcaption>
+    <figcaption><p>Afbeelding 4. Resultaat van de policy met "dryrun" flag.</p></figcaption>
 </figure>
 
 </br>
@@ -168,14 +172,14 @@ Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgev
 Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, zoals deze:
 <figure>
     <img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
-    <figcaption><p>Afbeelding 4. Voorbeeld van foutmelding na uitvoeren van policy.</p></figcaption>
+    <figcaption><p>Afbeelding 5. Voorbeeld van foutmelding na uitvoeren van policy.</p></figcaption>
 </figure>
 
 Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met `CTRL + SHIFT + P`. Hier kan je zoeken naar `Change file encoding`, daarna krijg je dit menu:
 
 <figure>
     <img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
-    <figcaption><p>Afbeelding 5. Verander de file encoding naar "UTF-8".</p></figcaption>
+    <figcaption><p>Afbeelding 6. Verander de file encoding naar "UTF-8".</p></figcaption>
 </figure>
 
 </br>
@@ -191,14 +195,14 @@ custodian run -s . ./Policies/
 Het resultaat hiervan is dit:
 <figure>
     <img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
-    <figcaption><p>Afbeelding 6. Resultaat policy zonder dryrun flag.</p></figcaption>
+    <figcaption><p>Afbeelding 7. Resultaat policy zonder dryrun flag.</p></figcaption>
 </figure>
 
 Als ik nu kijk naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet verwijder door de replicaset die ervoor zorgt dat er altijd een draait.
 
 <figure>
     <img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
-    <figcaption><p>Afbeelding 7. Opnieuw opgestartte pod.</p></figcaption>
+    <figcaption><p>Afbeelding 8. Opnieuw opgestartte pod.</p></figcaption>
 </figure>
 
 </br>
