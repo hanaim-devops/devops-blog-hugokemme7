@@ -38,10 +38,10 @@ Cloud Custodian werkt op basis van policies. Deze polices bestaan uit simpele fi
 - <b>Acties:</b> Dit zijn de automatische reacties op de gefilterde resources, zoals het stoppen, verwijderen, of taggen van resources.
 
 ### Voorbeeld
-<img src="plaatjes/voorbeeld-policy.png" width="300" align="center" alt="Voorbeeld policy" title="Voorbeeld policy"/>
-
-
-<i>Afbeelding 1. Voorbeeld policy</i>
+<figure>
+    <img src="plaatjes/voorbeeld-policy.png" width="300" alt="Voorbeeld policy" title="Voorbeeld policy"/>
+    <figcaption><i>Afbeelding 1. Voorbeeld policy</i></figcaption>
+</figure>
 
 Deze policy stopt alle EC2-instances die draaien en geen "Environment" tag hebben.
 
@@ -108,8 +108,10 @@ kubectl get pods -n c7n
 
 </br>
 
-<img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
-<i>Afbeelding 2. De op dit moment draaiende pods.</i>
+<figure>
+    <img src="./plaatjes/c7n_running_pods.png" alt="De op dit moment draaiende pods" />
+    <figcaption><p>Afbeelding 2. De op dit moment draaiende pods.</p></figcaption>
+</figure>
 
 Nu het project is opgezet kan c7n geinstalleerd worden. Dit wordt gedaan via Python, dus als dit nog niet geinstalleerd is, moet deze ook geinstalleerd worden. Voor de installatie van Python verwijs ik naar de website van [Python](https://www.python.org/downloads/). Het commando om Cloud Custodian te installeren op windows ziet er als volgt uit:
 ```ps1
@@ -156,22 +158,25 @@ custodian run --dryrun -s . ./Policies/
 
 Ik run het commando met de flag "--dryrun", zodat de actie nog niet wordt uitgevoerd en ik kan zien wat het resultaat is van de policy. Het resultaat van de policy is nu:
 
-<img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
-</br>
-<i>Afbeelding 3. Resultaat van de policy met "dryrun" flag. </i>
+<figure>
+    <img src="./plaatjes/c7n-result-policy-without-label.png" alt="Dry run resultaat van de policy" />
+    <figcaption><p>Afbeelding 3. Resultaat van de policy met "dryrun" flag.</p></figcaption>
+</figure>
 
 </br>
 
 Nu kan het gebeuren dat je een foutmelding krijgt met allemaal vreemde tekens, zoals deze:
-<img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
-<i>Afbeelding 4. Voorbeeld van foutmelding na uitvoeren van policy.</i>
-</br>
+<figure>
+    <img src="./plaatjes/c7n-policy-saved-with-bom.png" alt="Foutmelding met vreemde karakters" />
+    <figcaption><p>Afbeelding 4. Voorbeeld van foutmelding na uitvoeren van policy.</p></figcaption>
+</figure>
 
 Dit heeft te maken met hoe het bestand is opgeslagen. Dit moet "UTF-8" zijn, zonder "BOM". Dit kan veranderd worden in een texteditor. Ik ga het laten zien in VS code. Eerst moet het commando menu geopend worden, dit kan met `CTRL + SHIFT + P`. Hier kan je zoeken naar `Change file encoding`, daarna krijg je dit menu:
 
-<img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
-</br>
-<i>Afbeelding 5. Verander de file encoding naar "UTF-8". </i>
+<figure>
+    <img src="./plaatjes/c7n-change-file-encoding.png" alt="Verander de file encoding" />
+    <figcaption><p>Afbeelding 5. Verander de file encoding naar "UTF-8".</p></figcaption>
+</figure>
 
 </br>
 
@@ -184,14 +189,17 @@ custodian run -s . ./Policies/
 </br>
 
 Het resultaat hiervan is dit:
-<img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
-</br>
-<i>Afbeelding 6. Resultaat policy zonder dryrun flag. </i>
+<figure>
+    <img src="./plaatjes/c7n-result-policy-without-dryrun.png" alt="Resultaat zonder dryrun flag" />
+    <figcaption><p>Afbeelding 6. Resultaat policy zonder dryrun flag.</p></figcaption>
+</figure>
 
 Als ik nu kijk naar de draaiende pods, is te zien dat de pod met het label "env=test" opnieuw is opgestart. De pod is niet verwijder door de replicaset die ervoor zorgt dat er altijd een draait.
 
-<img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
-<i>Afbeelding 7. Opnieuw opgestartte pod. </i>
+<figure>
+    <img src="./plaatjes/c7n-restarted-pod-with-label-test.png" alt="opnieuw opgestartte pod" />
+    <figcaption><p>Afbeelding 7. Opnieuw opgestartte pod.</p></figcaption>
+</figure>
 
 </br>
 
