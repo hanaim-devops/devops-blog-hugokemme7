@@ -208,11 +208,11 @@ Met behulp van Cloud Custodian kan ervoor gezord worden dat cloud resources zich
 
 
 # Bronnen
- * Cloud Custodian Documentation — Cloud Custodian  documentation. (n.d.). https://cloudcustodian.io/docs/index.html
+ * Cloud Custodian Documentation — Cloud Custodian  documentation. (z.d.). https://cloudcustodian.io/docs/index.html
  * Stacklet. (2024, September 23). Cloud Custodian. https://stacklet.io/cloud-custodian/
  * Mendez, W. (2022, July 25). Cloud Custodian — things I wish I knew at the beginning. Medium. https://medium.com/globant/cloud-custodian-things-i-wish-i-knew-at-the-beginning-2743cf948066
  * Stacklet. (2024a, February 16). Beyond the basics: discovering powerful, Lesser-Known uses of cloud custodian - [Video]. YouTube. https://www.youtube.com/watch?v=hUKJKkRzNmY
  * OtherDevOpsGene. (2022b, March 2). What is Cloud Custodian? [Video]. YouTube. https://www.youtube.com/watch?v=bGtQiGQOkHs
- * Hbo-I. (n.d.). ICT Research Methods — Methods Pack for research in ICT. ICT Research Methods. https://ictresearchmethods.nl/
- * ChatGPT - Alternatieven voor Cloud Custodian. (n.d.). ChatGPT. https://chatgpt.com/share/67894a72-1374-8001-ad4b-dc39bc44b040
- * Download Python. (n.d.). Python.org. https://www.python.org/downloads/
+ * Hbo-I. (z.d.). ICT Research Methods — Methods Pack for research in ICT. ICT Research Methods. https://ictresearchmethods.nl/
+ * ChatGPT - Alternatieven voor Cloud Custodian. (z.d.). ChatGPT. https://chatgpt.com/share/67894a72-1374-8001-ad4b-dc39bc44b040
+ * Download Python. (z.d.). Python.org. https://www.python.org/downloads/
